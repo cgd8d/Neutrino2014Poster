@@ -14,8 +14,8 @@
   %\usepackage{arev}
   %\renewcommand{\sfdefault}{arev}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
 
 
   \usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}                       % e.g. for DIN-A0 poster
@@ -150,19 +150,59 @@ The beauty of a low-background detector is that it collects lots of noise, so me
 
   \begin{column}{.3\linewidth}
 
-    \begin{block}{\large Fontsizes}
-      \centering
-      {\tiny tiny}\par
-      {\scriptsize scriptsize}\par
-      {\footnotesize footnotesize}\par
-      {\normalsize normalsize}\par
-      {\large large}\par
-      {\Large Large}\par
-      {\LARGE LARGE}\par
-      {\veryHuge veryHuge}\par
-      {\VeryHuge VeryHuge}\par
-      {\VERYHuge VERYHuge}\par
+    \begin{block}{Optimal Energy Estimator}
+      The goal is to find the optimal linear estimator of energy $E$.  The estimator must be real-valued, so we describe it with parameters $A_i[f]$ and $B_i[f]$ and estimate the energy as:
+\[\widehat{E} = \sum_{if} A_i[f]\widetilde{X}^R_i[f] + B_i[f]\widetilde{X}^I_i[f].\]
+We constrain the estimator to be unbiased:
+\[\left<E-\widehat{E}\right> = 0.\]
+The optimal choice of $A_i[f]$ and $B_i[f]$ is the one which minimizes the mean square error,
+\[\left<\left(E-\widehat{E}\right)^2\right>.\]
+We can do this: it requires us to solve a large matrix equation, and since every event is different each one requires its own solution, but for a low-statistics detector this is feasible.  And it has been done.
     \end{block}
+
+    \begin{block}{Impact on Spectra}
+      \begin{columns}
+        \begin{column}{0.37\textwidth}
+          The resolution is visibly improved at all energies.  A $^{228}$Th source spectrum (right) shows the primary peak at 2615 keV becomes narrower and taller, and some low-energy peaks become visible which before blended into the smooth background.
+        \end{column}
+        \begin{column}{0.63\textwidth}
+          \includegraphics[keepaspectratio=true,width=\textwidth]{ThSourceSpectrumComparison.pdf}
+        \end{column}
+      \end{columns}
+
+      \begin{columns}
+        \begin{column}{0.63\textwidth}
+          \includegraphics[keepaspectratio=true,width=\textwidth]{RotatedReso_denoised_compVsTime.pdf}
+        \end{column}
+        \begin{column}{0.37\textwidth}
+          The strong time-dependence in resolution which we see before denoising has flattened out after denoising.  This is consistent with the expectation that time-dependence comes from noise, and that denoising removes much of that noise.
+        \end{column}
+      \end{columns}
+
+      \begin{columns}
+        \begin{column}{0.37\textwidth}
+          Descriptions here.
+        \end{column}
+        \begin{column}{0.63\textwidth}
+          \includegraphics[keepaspectratio=true,width=\textwidth]{DenoisedVsUndenoised_TotalPdfsWithData.pdf}
+        \end{column}
+      \end{columns}
+    \end{block}
+
+
+    %\begin{block}{\large Fontsizes}
+    %  \centering
+    %  {\tiny tiny}\par
+    %  {\scriptsize scriptsize}\par
+    %  {\footnotesize footnotesize}\par
+    %  {\normalsize normalsize}\par
+    %  {\large large}\par
+    %  {\Large Large}\par
+    %  {\LARGE LARGE}\par
+    %  {\veryHuge veryHuge}\par
+    %  {\VeryHuge VeryHuge}\par
+    %  {\VERYHuge VERYHuge}\par
+    %\end{block}
 
   \end{column}
 
